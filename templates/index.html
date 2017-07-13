@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>Ninja Gold Game</title>
+    <style>
+    main{
+      width: 1000px;
+      margin: 0 auto;
+    }
+    .place{
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+      border: solid 2px #000000;
+      display: inline-block;
+      text-align: center;
+    }
+    p.win{
+      color: green;
+    }
+    p.lose{
+      color:red;
+    }
+    </style>
+    <script type="text/javascript">
+      .activity
+
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>Your Gold: {{session['total_gold']}}</h1>
+      <div class="place">
+        <h2>Farm</h2>
+        <form action="/process_money" method="post">
+          <input type="hidden" name="building" value="farm">
+          <input type="submit" value="Find Gold!">
+        </form>
+      </div>
+      <div class="place">
+        <h2>Cave</h2>
+        <form action="/process_money" method="post">
+          <input type="hidden" name="building" value="cave">
+          <input type="submit" value="Find Gold!">
+        </form>
+      </div>
+      <div class="place">
+        <h2>House</h2>
+        <form action="/process_money" method="post">
+          <input type="hidden" name="building" value="house">
+          <input type="submit" value="Find Gold!">
+        </form>
+      </div>
+      <div class="place">
+        <h2>Casino</h2>
+        <form action="/process_money" method="post">
+          <input type="hidden" name="building" value="casino">
+          <input type="submit" value="Find Gold!">
+        </form>
+      </div>
+      <div class="activity">
+        <h2>Activities</h2>
+        {% if session['display'] == 1 %}
+        <p class="win">Earned {{session['gold']}} golds from the {{session['building']}}! ({{session['time']}})</p>
+        {% elif session['display'] == 2 %}
+        <p class="lose">Entered a {{session['building']}} and lost {{session['gold']}}... Ouch...({{session['time']}})</p>
+        {% endif %}
+      </div>
+    </main>
+  </body>
+</html>
